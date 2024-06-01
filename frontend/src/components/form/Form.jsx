@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+
+import "./Form.css";
 
 const Form = ({ title, handleClick }) => {
   const [email, setEmail] = useState("");
@@ -7,25 +8,30 @@ const Form = ({ title, handleClick }) => {
 
   return (
     <form className="form">
-      <h1 className="register">Register</h1>
-
-      <p>
-        Already have an account? <Link to="/login">Sign in</Link>
-      </p>
-
       <input
-        type="email"
+        className="input"
+        required
         value={email}
+        type="email"
+        placeholder="Enter your email..."
         onChange={(e) => setEmail(e.target.value)}
-        placeholder="email"
       />
       <input
-        type="password"
+        className="input"
+        required
         value={password}
+        minLength="6"
+        type="password"
         onChange={(e) => setPassword(e.target.value)}
-        placeholder="password"
+        placeholder="Enter your password..."
       />
-      <button onClick={() => handleClick(email, password)}>{title}</button>
+      <button
+        type="submit"
+        className="btn"
+        onClick={(event) => handleClick(event, email, password)}
+      >
+        {title}
+      </button>
     </form>
   );
 };

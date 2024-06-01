@@ -1,10 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+
 import "./style.css";
 
 const Navbar = () => {
-  const activeLink = "nav-list__link nav-list__link--active";
-  const normalLink = "nav-list__link";
   return (
     <div>
       <nav className="nav">
@@ -12,34 +11,13 @@ const Navbar = () => {
           <div className="nav-row">
             <ul className="nav-list">
               <li className="nav-list__item">
-                <NavLink
-                  to="/login"
-                  className={({ isActive }) =>
-                    isActive ? activeLink : normalLink
-                  }
-                >
-                  HomePage
-                </NavLink>
+                <NavLink to="/">HomePage</NavLink>
               </li>
               <li className="nav-list__item">
-                <NavLink
-                  to="/login"
-                  className={({ isActive }) =>
-                    isActive ? activeLink : normalLink
-                  }
-                >
-                  LoginPage
-                </NavLink>
+                <NavLink to="/login">LoginPage</NavLink>
               </li>
               <li className="nav-list__item">
-                <NavLink
-                  to="/register"
-                  className={({ isActive }) =>
-                    isActive ? activeLink : normalLink
-                  }
-                >
-                  RegisterPage
-                </NavLink>
+                <NavLink to="/register">RegisterPage</NavLink>
               </li>
             </ul>
           </div>

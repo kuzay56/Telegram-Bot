@@ -1,32 +1,30 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./styles/main.css";
-import HomePage from "./components/pages/HomePage";
-import LoginPage from "./components/pages/LoginPage";
-import RegisterPage from "./components/pages/RegisterPage";
-import Navbar from "./components/navbar/Navbar";
+import { Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
-// import "style.css"
+import { useTelegram } from "./hooks/useTelegram";
+
+import HomePage from "./Components/Pages/HomePage";
+import LoginPage from "./Components/Pages/LoginPage";
+import RegisterPage from "./Components/Pages/RegisterPage";
+import Footer from "./Components/Footer/Footer";
+
+import "./Components/styles/App.css";
 
 function App() {
-  const tg = window.Telegram.WebApp;
+  const { tg } = useTelegram();
 
   useEffect(() => {
     tg.ready();
   }, []);
 
-  const onClose = () => {
-    tg.close();
-  };
   return (
-    <Router>
-      <Navbar />
-      <button onClick={onClose}>Закрыть</button>
+    <div className="App">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Routes>
-    </Router>
+      <Footer />
+    </div>
   );
 }
 

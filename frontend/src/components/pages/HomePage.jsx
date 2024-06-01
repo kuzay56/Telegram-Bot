@@ -1,21 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../../hooks/use-auth";
 import { useDispatch } from "react-redux";
-import { useAuth } from "hook/use-auth";
-import { removeUser } from "store/slices/userSlice";
+import { removeUser } from "../../store/slices/userSlice";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const [isAuth, email] = useAuth();
+  const { isAuth, email } = useAuth();
   return isAuth ? (
-    <div>
-      <h1>Welcome</h1>
-      <button onClick={() => dispatch(removeUser())}>
-        Log out from {email}
+    <div className="main">
+      <h1 className="nameTitle">Welcome!</h1>
+      <button className="btn" onClick={() => dispatch(removeUser())}>
+        Log out, {email}
       </button>
     </div>
   ) : (
-    <Link to="/login"></Link>
+    <Navigate replace to={"/login"} />
   );
 };
 

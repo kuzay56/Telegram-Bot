@@ -1,15 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { setUser } from "store/slices/userSlice";
 import { useDispatch } from "react-redux";
-import Form from "./../form/Form";
+import { useNavigate } from "react-router-dom";
+import { setUser } from "../../store/slices/userSlice";
+import Form from "../Form/Form";
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleRegister = (email, password) => {
+
+  const handleRegister = (event, email, password) => {
+    event.preventDefault();
     const auth = getAuth();
+		
     createUserWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         console.log(user);
@@ -17,15 +20,18 @@ const SignUp = () => {
           setUser({
             email: user.email,
             id: user.uid,
-            tokem: user.accessToken,
+            token: user.accessToken,
           })
         );
-        navigate("/");
+        navigate("/login");
       })
       .catch(console.error);
   };
-
-  return <Form title="register" handleClick={handleRegister} />;
+  return (
+    <div>
+      <Form title="Registration" handleClick={handleRegister} />
+    </div>
+  );
 };
 
-export { SignUp };
+export default SignUp;

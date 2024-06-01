@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Login from "components/login/Login";
+import SignIn from "../SignIn/SignIn";
 
 const LoginPage = () => {
   return (
-    <div>
-      <h1>Login</h1>
-      <Login />
-      <p>
-        Or <Link to="/register">Register</Link>
+    <div className="main">
+      <h1 className="nameTitle">Login</h1>
+      <SignIn />
+      <p className="title_inner">
+        Create an account.
+        <Link to="/register">Register</Link>
       </p>
     </div>
   );
